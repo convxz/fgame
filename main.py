@@ -1,20 +1,33 @@
 import tkinter as tk
-from tkinter import ttk
 from PIL import Image, ImageTk 
 
-# создание окна
-window = tk.Tk()
-# размеры окна
-window.geometry("600x400+200+100")
-# название окна
-window.title("main.")
-# создание иконки
-img = ImageTk.PhotoImage(Image.open("D:\code\game\src\img\mainicon.png"))
-window.iconphoto(False, img)
-# создание кадра
-frame = ttk.Frame(window, padding=10)
-frame.grid()
-ttk.Label(frame, text="Hello, World!").grid(column=0, row=0)
-ttk.Button(frame, text="Quit", command=window.destroy).grid(column=1, row=0)
 
-window.mainloop()
+class Main:
+
+    def __init__(self):
+        self.root = tk.Tk()
+        self.root.geometry('500x500')
+        self.root.title("main.")
+        img = ImageTk.PhotoImage(Image.open("src\img\mainicon.png"))
+        self.root.iconphoto(False, img)
+        self.canvas = tk.Canvas(width=500, height=500, bg="yellow").pack()
+
+
+    def run(self):
+        self.interface()
+        self.root.mainloop()
+
+
+    def interface(self):
+        self.root.bind('<B1-Motion>', self.move)
+
+
+    def move(self, event):
+        x = event.x
+        y = event.y
+
+        print(x, y)
+
+
+App = Main()
+App.run()
